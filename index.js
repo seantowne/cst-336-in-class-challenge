@@ -25,6 +25,10 @@ app.get('/results', function(req, res){
 	});
 });
 
+app.get('/results', function(req, res){
+	var query = req.query.search
+})
+
 /* The handler for undefined routes */
 app.get('*', function(req, res){
    res.render('error'); 
