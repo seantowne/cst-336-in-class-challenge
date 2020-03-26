@@ -6,17 +6,13 @@
         <button class='btn btn-info' onclick='location.href="/";'>Search Again</button>
     </div>
 
-    <ul id='movies-list'>
-        <% data.Search.forEach(function(movie){%>
-	        <li> 
-	            <img class='poster' src=<%=movie.Poster%> />
-	            <div>
-                    <h5><%=movie.Title%></h5>
-                    <p><%=movie.Year%></p>
-                </div>
-	        </li>	
-        <% }); %>
-    <ul>
+   <p> <%= data.title %> </p>
+   <p> <%= data.authors[0].name %> </p>
+   <p> <%= data.publish_date %> </p>
+   <p> <%= data.publishers[0].name %> </p>
+   <p> <%= data.number_of_pages %> </p>
+   <img href="<%= data.cover.medium %>" >
+   
 </div>
 
 <script type="text/javascript" src="js/results.js"></script>

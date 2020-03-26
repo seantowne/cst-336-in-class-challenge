@@ -14,21 +14,33 @@ app.get('/', function(req, res){
 
 /* The handler for the /results route */
 app.get('/results', function(req, res){
+	// https://openlibrary.org/api/books?bibkeys=ISBN:0451526538&format=json&jscmd=data
 	var query = req.query.search;
-	var url = 'http://www.omdbapi.com/?apikey=thewdb&s=' + query;
+	console.log(query);
+	var url = 'https://openlibrary.org/api/books?bibkeys=ISBN:' + query + '&format=json&jscmd=data';
 	request(url, function(error, response, dataStream){
 		if (!error && response.statusCode == 200){
 			var data = JSON.parse(dataStream);
-			//console.log('data=',data);
-			res.render('results', {data: data});
+			var firstKey = Object.keys(data)[0]
+			console.log(data[firstKey]);
+			res.render('results', {data: data[firstKey]});
 		}
 	});
 });
 
-app.get('/results', function(req, res){
-	var query = req.query.search
-})
-
+/*
+<ul id='movies-list'>
+        <% data.Search.forEach(function(movie){%>
+	        <li> 
+	            <img class='poster' src=<%=movie.Poster%> />
+	            <div>
+                    <h5><%=movie.Title%></h5>
+                    <p><%=movie.Year%></p>
+                </div>
+	        </li>	
+        <% }); %>
+    <ul>
+*/
 /* The handler for undefined routes */
 app.get('*', function(req, res){
    res.render('error'); 
